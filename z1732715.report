@@ -1,0 +1,39 @@
+BEGIN {
+    print "Sales Data for year 2014"
+    print "========================"
+    sum_of_x = 0
+    sum_of_y = 0
+    sum_of_z = 0
+    total = 0
+    count = 0
+}
+
+$1 ~ /2014/ {
+    printf("  %s:\t%7.2f\n", $2, $4+$5+$6+$7)
+
+    if($3 == "X") {
+        sum_of_x += $4+$5+$6+$7
+    }
+    else if($3 == "Y"){
+        sum_of_y += $4+$5+$6+$7
+    }
+    else if($3 == "Z"){
+        sum_of_z += $4+$5+$6+$7
+    }
+    
+    count++
+}
+
+
+
+END {
+    total = sum_of_x+sum_of_y+sum_of_z
+    print "========================"
+    print "Station volume for 2014 is:"
+    printf("    X: %8.2f \n", sum_of_x)
+    printf("    Y: %8.2f \n", sum_of_y)
+    printf("    Z: %8.2f \n", sum_of_z)
+    print "========================"
+    printf("Total: %8.2f \n", total)
+    print count, "records processed"
+}
